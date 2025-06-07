@@ -1,3 +1,5 @@
+import time
+
 class VisualNovel():
 
     '''
@@ -46,3 +48,22 @@ class Character():
         
         # 使用print时调用这个函数,必须使用return一个字符串
         return self.name
+
+
+class Cookie():
+
+    def __init__(self,value: str = '',expires_at :float = 0):
+
+        self.value = value
+        self.expires_at = expires_at
+
+    def is_expired(self,type):
+
+        return time.time() > self.expires_at + 120 
+    
+    def upgrade_cookie(self,new_value: str = '',new_expires_at:float = 0):
+
+        """更新 Cookie 的值和过期时间"""
+        self.value = new_value
+        self.expires_at = new_expires_at
+
