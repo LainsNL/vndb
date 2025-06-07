@@ -5,7 +5,7 @@ class VisualNovel():
     游戏ID
     游戏简介
     '''
-
+    
     def __init__(self,title:str,id:str,description:str):
         self.title = title
         self.id = id
@@ -27,7 +27,6 @@ class VisualNovel():
 
         return self.characters
 
-
 class Character():
 
     '''
@@ -47,5 +46,3 @@ class Character():
         
         # 使用print时调用这个函数,必须使用return一个字符串
         return self.name
-    
-
