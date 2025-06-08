@@ -42,5 +42,5 @@ def get_cookie(type,cookie:Cookie=None):
             else:
 
                 print('导入logging/重试')
-
+        
         return cookie.value

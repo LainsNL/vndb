@@ -69,7 +69,7 @@ class Cookie():
 
 class SearchResult():
 
-    def __init__(self, query: str, url: str = None, type: str = 'vndb', ):
+    def __init__(self, query: str, type: str = 'vndb', url: str = None):
 
         '''
         初始化搜索结果
@@ -84,8 +84,10 @@ class SearchResult():
         if url == None:
 
             self.url = self._genetrate_url()
+        
+        else:
 
-        self.url = url
+            self.url = url
 
     def _genetrate_url(self):
 
@@ -101,11 +103,13 @@ class SearchResult():
             "ftp":"http://127.0.0.1:7897"
         }
 
+
         try:
 
             if self.type =='vndb':
 
-                response = requests.get(url=f'https://vndb.org/v?sq={self.query}',headers=headers,proxies=proxy) 
+                response = requests.get(url=f'https://vndb.org/v?sq={self.query}',headers=headers,proxies=proxy)
+                self.url_text = response.text
                 return response.url
             
             else:
@@ -128,6 +132,9 @@ class SearchResult():
         if self.type == 'vndb':
 
             return not self.url.rsplit('/')[-1].startswith('v?')
+
+
+
         
     def get_id(self):
 
@@ -135,6 +142,6 @@ class SearchResult():
 
             if self.type == 'vndb':
 
-                return self.url.split('/')[-1]
+                return '/' + self.url.split('/')[-1]
 
         raise ValueError("Not the target url")
