@@ -3,7 +3,7 @@ import parsel
 from vndb_classes import SearchResult,Cookie
 from get_cookie import get_cookie
 
-def get_vndb_data(games:dict=[]):
+def get_vndb_data(games:list=[]):
 
     Result = []
     
@@ -12,7 +12,7 @@ def get_vndb_data(games:dict=[]):
         games = input('输入游戏名称(请勿携带/):')
         print()
 
-    if type(games) is not dict:
+    if type(games) is not list:
         games = [games]
 
     for game in games:
@@ -82,7 +82,7 @@ def get_vndb_data(games:dict=[]):
     print(f"{game_title} - {Description}")
     with open(f'{game_title}.txt','w',encoding='utf-8') as file:
 
-        file.write(f'游戏标题：{game_title}\n游戏简介:{Description}\n')
+        file.write(f'游戏标题: {game_title}\n游戏简介: {Description}\n')
         get_chars_data(selector,file,'Protagonist')
         get_chars_data(selector,file,'Main characters')
         get_chars_data(selector,file,'Side characters')

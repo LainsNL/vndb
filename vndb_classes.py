@@ -103,7 +103,6 @@ class SearchResult():
             "ftp":"http://127.0.0.1:7897"
         }
 
-
         try:
 
             if self.type =='vndb':
@@ -112,8 +111,14 @@ class SearchResult():
                 self.url_text = response.text
                 return response.url
             
-            else:
+            elif self.type == '2dfan':
 
+                response = requests.get(url=f'https://galge.top/subjects/search?keyword={self.query}',headers=headers,proxies=proxy)
+
+                self.url_text = response.json()['subjects']
+                return response.url
+
+            else:
                 raise ValueError('TODO')
 
         except Exception as e:
@@ -134,8 +139,6 @@ class SearchResult():
             return not self.url.rsplit('/')[-1].startswith('v?')
 
 
-
-        
     def get_id(self):
 
         if self.is_Target() == True:
