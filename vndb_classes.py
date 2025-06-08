@@ -57,7 +57,6 @@ class Cookie():
 
         self.value = value
         self.expires_at = expires_at
-
     def is_expired(self, type):
 
         return time.time() > self.expires_at + 120 
@@ -139,6 +138,3 @@ class SearchResult():
                 return self.url.split('/')[-1]
 
         raise ValueError("Not the target url")
-
-
-
