@@ -1,5 +1,10 @@
 import time
 import requests
+import parsel
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class VisualNovel():
 
@@ -94,13 +99,16 @@ class SearchResult():
         '''
         不建议外部使用
         '''
+        
         headers= {
                 'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
             }
+        
+        PROXY = os.getenv('PROXY')
         proxy= {   
-            "http": "http://127.0.0.1:7897", 
-            "https": "http://127.0.0.1:7897", 
-            "ftp":"http://127.0.0.1:7897"
+            "http": PROXY, 
+            "https": PROXY, 
+            "ftp": PROXY
         }
 
         try:
@@ -136,15 +144,11 @@ class SearchResult():
 
         if self.type == 'vndb':
 
-            return not self.url.rsplit('/')[-1].startswith('v?')
+            if not self.url.rsplit('/')[-1].startswith('v?'):
 
-
-    def get_id(self):
-
-        if self.is_Target() == True:
-
-            if self.type == 'vndb':
-
-                return '/' + self.url.split('/')[-1]
-
-        raise ValueError("Not the target url")
+                selector = parsel.Selector(self.url_text)
+                self.title = selector.css('.title span::text').get()
+                self.vndb_id = '/' + self.url.split('/')[-1]
+                return True
+            
+            return False

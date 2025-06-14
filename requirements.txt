@@ -1,3 +1,6 @@
-playwright
+os
 requests
 parsel
+json
+re
+dotenv

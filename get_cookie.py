@@ -1,6 +1,7 @@
 import requests
 from vndb_classes import Cookie
 import re
+import os
 import time
 
 def get_cookie(type,cookie:Cookie=None):
@@ -17,11 +18,12 @@ def get_cookie(type,cookie:Cookie=None):
 
         if cookie.is_expired or cookie.value == None:
 
+            PROXY = os.getenv('PROXY')
             proxy= {   
-                    "http": "http://127.0.0.1:7897", 
-                    "https": "http://127.0.0.1:7897", 
-                    "ftp":"http://127.0.0.1:7897"
-                }
+                "http": PROXY, 
+                "https": PROXY, 
+                "ftp": PROXY
+            }
 
             headers = {
                 'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
