@@ -467,15 +467,10 @@ def get_2dfan_intro(page_count,id,headers):
     list = [list]
     return list
 
-def main():
+def main(keyword):
 
-    # 在这里修改名称
-    keyword = None
     load_dotenv()
 
-    if keyword ==  None:
-        keyword = input('键入你的游戏名称，尽量完整')
-    
     vndb_id,dfan_id = get_title_id(keyword)
     input = []
 
@@ -500,4 +495,10 @@ def main():
 # 主函数入口
 if __name__ == "__main__":
 
-    main()
+    # 在这里修改名称
+    keyword = None
+
+    if keyword ==  None:
+        keyword = input('键入你的游戏名称，尽量完整')
+
+    main(keyword)
