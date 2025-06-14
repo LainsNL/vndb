@@ -469,8 +469,13 @@ def get_2dfan_intro(page_count,id,headers):
 
 def main():
 
+    # 在这里修改名称
+    keyword = None
     load_dotenv()
-    keyword = '水月 ～すいげつ～'
+
+    if keyword ==  None:
+        keyword = input('键入你的游戏名称，尽量完整')
+    
     vndb_id,dfan_id = get_title_id(keyword)
     input = []
 

@@ -1,6 +1,6 @@
-# vndb
-考虑用于翻译中提供自动化参照
-
+用于翻译中提供自动化术语参照
+结合[keywordgacha](https://github.com/neavo/KeywordGacha "keywordgacha")一起使用来获得筛选后的术语表，暂时只支持旧版。
+~~总体是相当没用的工具呢～~~
 
 - Todo: 优化现有提示词, 收录bgm，添加注释
 - Todo: 可选的输入Id, 多个类型内容来源, 并发池
